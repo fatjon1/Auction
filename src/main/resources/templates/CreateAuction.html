@@ -59,7 +59,7 @@ $(document).ready(function(){
        	  <select class="form-control" name="category" style="margin-bottom:10px;">
        	  		<option th:each="category : ${categories}"
                             th:value="${category.categoryId}"
-                            th:utext="${category.categoryName}"/>
+                            th:utext="${category.title}"/>
 	      </select>
 	     <textarea name="description" rows="1" cols="1"  style="width:100%" placeholder="Description of the item" required></textarea>
 	     Select Images <input type="file" id="file" name="multiPartFiles" multiple required>

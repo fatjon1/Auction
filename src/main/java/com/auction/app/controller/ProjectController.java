@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
@@ -24,21 +23,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.auction.app.dto.CreateAuctionDTO;
 import com.auction.app.model.Auction;
-import com.auction.app.model.AuctionImage;
 import com.auction.app.model.Category;
 import com.auction.app.model.User;
-import com.auction.app.repository.AuctionImageRepository;
 import com.auction.app.repository.AuctionRepository;
 import com.auction.app.repository.CategoryRepository;
 import com.auction.app.repository.UserRepository;
@@ -49,7 +43,7 @@ import com.auction.app.util.DateUtil;
 public class ProjectController {
 	
 	
-	@Autowired
+	/*@Autowired
 	CategoryRepository categoryRepository;
 	
 	@Autowired
@@ -73,7 +67,7 @@ public class ProjectController {
 	public String projectPage(Model model) {
 		Category ct=new Category();
 		ct.setCategoryId(1);
-		ct.setCategoryName("Game");
+		ct.setTitle("Game");
 		ct.setActive(1);
 		categoryRepository.save(ct);
 		model.addAttribute("categories", categoryRepository.findAll());
@@ -96,7 +90,7 @@ public class ProjectController {
 				
 				//Uploading Files
 			 	for(MultipartFile file : auction.getMultiPartFiles()) {
-					/*
+					*//*
 					 ************** Until any storage service is setup file will be randomly choosen
 					 ************** from image folder  
 						//Uploading Images
@@ -111,7 +105,7 @@ public class ProjectController {
 						System.out.println(realFile.getAbsolutePath());
 					*******************************************************
 					*****************************END
-					*/
+					*//*
 					String fileName=(String) getRandomImage();
 					AuctionImage image=new AuctionImage(createdAuction, fileName);
 					auctionImageRepository.save(image);
@@ -170,5 +164,5 @@ public class ProjectController {
 	public String messageApp() {
 		return "Messaging";
 	}
-	
+	*/
 }
