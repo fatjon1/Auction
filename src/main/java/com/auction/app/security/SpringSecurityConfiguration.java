@@ -14,14 +14,19 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter  {
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
+
                 .antMatchers("/required/**").permitAll()
+                .antMatchers("/webfonts/**").permitAll()
+                .antMatchers("/fonts/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/images/**").permitAll()
+
                 .antMatchers("/signUp").permitAll()
                 .antMatchers("/checkEmail").permitAll()
                 .antMatchers("/resetPassword").permitAll()
                 .antMatchers("/topic/**","/user/**").permitAll()
+
                 .antMatchers("/admin/**").authenticated()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll()

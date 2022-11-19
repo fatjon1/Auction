@@ -53,13 +53,6 @@ public class UserController {
 		return "index";
 	}
 	
-	@RequestMapping("/")
-	public String mainIndex(Model model) {
-		// model.addAttribute("projects", auctionRepository.findByActive(1));
-		// model.addAttribute("completedProjects",completedAuctionRepository.findAll() );
-		return "Index";
-	}
-	
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 	@ResponseBody
 	public String createUser(@ModelAttribute("myUser") User user) {

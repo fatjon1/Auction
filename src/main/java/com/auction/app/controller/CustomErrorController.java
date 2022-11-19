@@ -12,10 +12,5 @@ public class CustomErrorController implements ErrorController {
         //do something like logging
         return "CustomError";
     }
- 
-    @Override
-    public String getErrorPath() {
-        return "/error";
-    }
 
 }
