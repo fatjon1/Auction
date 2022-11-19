@@ -25,6 +25,9 @@ public class Auction extends  BaseEntity {
 	@Column(name="start_price")
 	private double startPrice;
 
+	@Column(name = "featured")
+	protected Boolean featured = false;
+
 	@NotNull
 	@Column(name = "category_id" , nullable=false)
 	@Type(type = "org.hibernate.type.UUIDCharType")
@@ -33,7 +36,6 @@ public class Auction extends  BaseEntity {
 	@ManyToOne
 	@JoinColumn(name="category_id", insertable = false, updatable = false)
 	private Category category;
-
 
 	@NotNull
 	@Column(name = "author_id", nullable = false)
@@ -44,13 +46,12 @@ public class Auction extends  BaseEntity {
 	@JoinColumn(name="author_id", insertable = false, updatable = false)
 	private User author;
 
-	@NotNull
 	@Column(name = "winner_id")
 	@Type(type = "org.hibernate.type.UUIDCharType")
 	protected UUID winnerId;
 
 	@ManyToOne
-	@JoinColumn(name="buyer_id", insertable = false, updatable = false)
+	@JoinColumn(name="winner_id", insertable = false, updatable = false)
 	private Bid winner;
 
 	@Column(name="description")

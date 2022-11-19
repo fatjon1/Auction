@@ -13,12 +13,7 @@ import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.auction.app.model.User;
 import com.auction.app.repository.AuctionRepository;
@@ -33,15 +28,11 @@ public class UserController {
 //	@Autowired
 //	private PasswordEncoder passwordEncoder;
 	
-	@RequestMapping("/login")
-	public String index( Model model, Principal principal, @CookieValue(name = "emailTry", required = false) String count ) {
-		
-		if(count!=null && count.equals("0"))
-			return "Banned";
-		
-		model.addAttribute("myUser", new User());
-		return principal==null ? "Login" : "/";
+	@GetMapping("/login")
+	public String index() {
+		return "login";
 	}
+
 	@ExceptionHandler(NotFoundException.class)
 	public String errorPage() {
 		return "Index";

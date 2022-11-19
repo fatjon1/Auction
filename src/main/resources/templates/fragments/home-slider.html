@@ -1,0 +1,56 @@
+<!-- Variabile courses eshte presente nese nga template qe kthehet nga nje kontroller, perdoret modelMap.put("courses", array list me kurset nga database) -->
+<div th:fragment="home-slider" >
+    <!-- Kontrolloj qe variabile eshte prezente ne kontekst, pra eshte karikuar nga kontrolleri -->
+    <div th:if="${featuredAuctions != null && featuredAuctions.size() > 0}" class="owl-carousel header-carousel position-relative">
+        <div class="owl-carousel-item position-relative" th:each="auction: ${featuredAuctions}">
+            <img class="img-fluid" th:src="${auction.image}" th:alt="${auction.title}">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-sm-10 col-lg-8">
+                            <h1 class="display-3 text-white animated slideInDown" th:text="${auction.title}"></h1>
+                            <p class="fs-5 text-white mb-4 pb-2" th:text="${auction.description}"></p>
+                            <a th:href="@{'/auctions/' + ${auction.id}}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nese nuk eshte karikuar nga kontrolleri ose nuk kam asnje kurs ne database, shfaq nje mesazh -->
+    <div class="row" th:if="${featuredAuctions == null || featuredAuctions.size() < 1}">
+        <div class="col-12">
+            <div class="alert alert-warning" role="alert">
+                There are no featured auctions defined in database!
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--
+<div th:fragment="home-slider" id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active" th:each="auction : ${featuredAuctions}">
+            <div class="carousel-caption text-center">
+                <h3 th:text="@{auction.title}">
+                    <span th:text="@{auction.description}"></span>
+                </h3>
+                <a th:href="@{'/auctions/' + ${auction.id}" class="btn btn-sm animated-button gibson-three mt-4">More</a>
+            </div>
+        </div>
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>-->

@@ -1,0 +1,22 @@
+<header th:fragment="menu" class="header-basic-light">
+    <script th:src="@{/js/login.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+
+    <div class="header-limiter">
+
+        <h1><a href="/"><img th:src="@{/images/logo.png}"></a></h1>
+
+        <nav>
+            <a href="/">Home</a> |
+            <a href="/auctions">Auctions</a> |
+
+            <a sec:authorize ="!isAuthenticated()" href="/login">Login </a>
+
+            <!-- Shfaq butonin e logout nese user eshte i loguar. Perdoret funksion nga thymeleaf spring security -->
+            <a class="nav-item nav-link" sec:authorize ="isAuthenticated()" th:href="@{/logout}">
+                Sign Out: <span sec:authentication="name"></span>
+            </a>
+        </nav>
+    </div>
+
+</header>
