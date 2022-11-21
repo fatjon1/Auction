@@ -1,13 +1,15 @@
 package com.auction.app.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="category")
 public class Category extends BaseEntity {
 

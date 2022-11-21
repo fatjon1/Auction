@@ -1,6 +1,10 @@
 package com.auction.app.startuprunners;
 
+import com.auction.app.dto.CategoryWrite;
 import com.auction.app.dto.UserWrite;
+import com.auction.app.model.Category;
+import com.auction.app.repository.CategoryRepository;
+import com.auction.app.service.CategoryService;
 import com.auction.app.service.UserService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -13,15 +17,21 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class RegisterAdminRunner implements CommandLineRunner {
     @NonNull protected UserService userService;
+    @NonNull protected CategoryService categoryService;
 
     @Override
     public void run(String... args) throws Exception {
         UserWrite admin = UserWrite.builder()
                 .username("admin")
-                .password("&pass123")
-                .repeatedPassword("&pass123")
+                .password("admin")
+                .repeatedPassword("admin")
                 .build();
         String result = userService.register(admin, "admin");
         log.info(String.format("Admin creation result: %s", result));
+
+        Category category = Category.builder()
+                .title("Electronics")
+                .build();
+        categoryService.save(category);
     }
 }

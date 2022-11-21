@@ -4,6 +4,7 @@ import com.auction.app.enums.AuctionStatus;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -61,4 +62,8 @@ public class Auction extends  BaseEntity {
 	private AuctionStatus status;
 
 	private String image;
+
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME , pattern = ("dd/MM/yyyy HH:mm"))
+	private LocalDateTime endDate; // every item has a predefined end date, calculated from the start date
+
 }
