@@ -32,6 +32,17 @@ public class UserService implements UserDetailsService {
 		return new UserDetailsImpl(user);
 	}
 
+
+	public User findUserByUsername(String username) throws UsernameNotFoundException {
+
+		User user=userRepository.findByUsername(username);
+		if(user==null)
+			throw new UsernameNotFoundException("User Not Found");
+
+
+		return user;
+	}
+
 	public String register(UserWrite user, String roles) {
 		if (user == null || StringUtils.isBlank(user.getUsername()))
 			return "Provide a valid username";

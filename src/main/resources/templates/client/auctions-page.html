@@ -9,7 +9,169 @@
 
 
 
+<div class="container">
 <h2>Auctions list</h2>
+<div class="row" th:fragment="latest-auctions">
+    <div class="col-12" th:if="${latestAuctions == null || latestAuctions.size() < 1}">
+        <div class="alert alert-warning" role="alert">
+            There are no latest auctions to show!
+        </div>
+    </div>
+    <div  class="col-md-3 product-men women_two" th:each="auction : ${latestAuctions}">
+        <div class="product-googles-info googles">
+            <div class="men-pro-item">
+                <div class="men-thumb-item">
+                    <img th:attr="src=@{|/images/${auction.image}|}"/>
+                    <!-- 									<img th:src="@{/image/Book.png}" class="img-thumbnail" alt=""> -->
+
+                    <div class="men-cart-pro">
+                        <div class="inner-men-cart-pro">
+                            <a th:href="@{'/auctions/' + ${auction.id}}" class="link-product-add-cart">Quick View</a>
+                        </div>
+                    </div>
+                    <span class="product-new-top">New</span>
+                </div>
+                <div class="item-info-product">
+                    <div class="info-product-price">
+                        <div class="grid_meta">
+                            <div class="product_price">
+                                <h4>
+                                    <a th:href="@{'/auction/' + ${auction.id}}" th:text="${auction.title}"></a>
+                                </h4>
+                                <div class="grid-price mt-2">
+                                    <span class="money " th:text="${auction.startPrice}"></span>
+                                </div>
+                            </div>
+                            <ul class="stars">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="googles single-item hvr-outline-out">
+                            <form action="" method="post">
+                                <input type="hidden" name="cmd" value="_cart">
+                                <input type="hidden" name="add" value="1">
+                                <input type="hidden" name="googles_item" value="Farenheit">
+                                <input type="hidden" name="amount" value="575.00">
+                                <button type="submit" class="googles-cart pgoogles-cart">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+
+
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<div class="container">
+    <h2>Auctions list</h2>
+    <div class="row" th:fragment="all-auctions">
+
+    <div  class="col-md-3 product-men women_two" th:each="auction : ${auctions}">
+        <div class="product-googles-info googles">
+            <div class="men-pro-item">
+                <div class="men-thumb-item">
+                    <img th:attr="src=@{|/images/${auction.image}|}"/>
+                    <!-- 									<img th:src="@{/image/Book.png}" class="img-thumbnail" alt=""> -->
+
+                    <div class="men-cart-pro">
+                        <div class="inner-men-cart-pro">
+                            <a th:href="@{'/auctions/' + ${auction.id}}" class="link-product-add-cart">Quick View</a>
+                        </div>
+                    </div>
+                    <span class="product-new-top">New</span>
+                </div>
+                <div class="item-info-product">
+                    <div class="info-product-price">
+                        <div class="grid_meta">
+                            <div class="product_price">
+                                <h4>
+                                    <a th:href="@{'/auction/' + ${auction.id}}" th:text="${auction.title}"></a>
+                                </h4>
+                                <div class="grid-price mt-2">
+                                    <span class="money " th:text="${auction.startPrice}"></span>
+                                </div>
+                            </div>
+                            <ul class="stars">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="googles single-item hvr-outline-out">
+                            <form action="" method="post">
+                                <input type="hidden" name="cmd" value="_cart">
+                                <input type="hidden" name="add" value="1">
+                                <input type="hidden" name="googles_item" value="Farenheit">
+                                <input type="hidden" name="amount" value="575.00">
+                                <button type="submit" class="googles-cart pgoogles-cart">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+
+
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- about -->
 <div th:replace="fragments/footer :: footer"></div>

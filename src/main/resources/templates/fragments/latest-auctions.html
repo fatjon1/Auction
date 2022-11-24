@@ -1,4 +1,6 @@
-<div class="row" th:fragment="latest-auctions">
+<div class="container" th:fragment="latest-auctions">
+    <h3 class="tittle-w3layouts my-lg-4 my-4">Latest auctions </h3>
+
     <div class="col-12" th:if="${latestAuctions == null || latestAuctions.size() < 1}">
         <div class="alert alert-warning" role="alert">
             There are no latest auctions to show!
@@ -23,7 +25,7 @@
                         <div class="grid_meta">
                             <div class="product_price">
                                 <h4>
-                                    <a th:href="@{'/auction/' + ${auction.id}}" th:text="${auction.title}"></a>
+                                    <a th:href="@{'/auctions/' + ${auction.id}}" th:text="${auction.title}"></a>
                                 </h4>
                                 <div class="grid-price mt-2">
                                     <span class="money " th:text="${auction.startPrice}"></span>
@@ -66,8 +68,6 @@
                                 <button type="submit" class="googles-cart pgoogles-cart">
                                     <i class="fas fa-eye"></i>
                                 </button>
-
-
                             </form>
 
                         </div>

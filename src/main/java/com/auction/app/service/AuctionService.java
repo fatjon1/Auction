@@ -12,8 +12,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.expression.Lists;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -46,4 +48,16 @@ public class AuctionService implements IAuctionService {
     public List<Auction> getFeatured() {
         return auctionRepository.getByFeaturedTrueAndDeletedFalseOrderByCreatedAtDesc();
     }
+
+    @Override
+    public List<Auction> getAllAuctions(){
+       return (List<Auction>) auctionRepository.findAll();
+    }
+
+    @Override
+    public Auction getById(UUID id) {
+       return auctionRepository.findById(id).get();
+    }
+
+
 }

@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Entity
-@Table(name="auction_bids")
+@Table(name="bid")
 public class Bid extends BaseEntity {
 
 	@NotNull
