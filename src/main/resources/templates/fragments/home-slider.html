@@ -20,6 +20,7 @@
 
     <!-- Nese nuk eshte karikuar nga kontrolleri ose nuk kam asnje kurs ne database, shfaq nje mesazh -->
     <div class="container" th:if="${featuredAuctions == null || featuredAuctions.size() < 1}">
+        <h3 class="tittle-w3layouts my-lg-4 my-4">Featured auctions </h3>
         <div class="col-12">
             <div class="alert alert-warning" role="alert">
                 There are no featured auctions defined in database!

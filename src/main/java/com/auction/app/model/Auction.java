@@ -66,4 +66,8 @@ public class Auction extends  BaseEntity {
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME , pattern = ("dd/MM/yyyy HH:mm"))
 	private LocalDateTime endDate; // every item has a predefined end date, calculated from the start date
 
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME , pattern = ("dd/MM/yyyy HH:mm"))
+	private LocalDateTime createdDate;
+	private boolean deleted = false;
+
 }

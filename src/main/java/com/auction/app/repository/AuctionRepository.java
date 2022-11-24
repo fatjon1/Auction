@@ -12,6 +12,5 @@ import com.auction.app.model.Auction;
 
 public interface AuctionRepository extends CrudRepository<Auction, UUID> {
     Page<Auction> getAllByDeletedFalse(Pageable pageable);
-
     List<Auction> getByFeaturedTrueAndDeletedFalseOrderByCreatedAtDesc();
 }

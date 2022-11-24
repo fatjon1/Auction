@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.expression.Lists;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,6 +31,7 @@ public class AuctionService implements IAuctionService {
         Auction auction = new Auction();
         auction.setTitle(auctionDTO.getTitle());
         auction.setStartPrice(auctionDTO.getStartingPrice());
+        auction.setCreatedDate(LocalDateTime.now());
         auction.setEndDate(auctionDTO.getEndDate());
         auction.setDescription(auctionDTO.getDescription());
         auction.setAuthorId(user.getId());
@@ -40,7 +42,7 @@ public class AuctionService implements IAuctionService {
 
     @Override
     public List<Auction> getLatest() {
-        Page<Auction> auctions = auctionRepository.getAllByDeletedFalse(PageRequest.of(0, 6, Sort.by(Sort.Direction.DESC, "createdAt")));
+        Page<Auction> auctions = auctionRepository.getAllByDeletedFalse(PageRequest.of(0, 6, Sort.by(Sort.Direction.DESC, "createdDate")));
         return auctions.getContent();
     }
 
