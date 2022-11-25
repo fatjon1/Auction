@@ -1,8 +1,8 @@
 package com.auction.app.model;
 
 import com.auction.app.enums.AuctionStatus;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.Tolerate;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,7 +13,9 @@ import java.util.UUID;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity

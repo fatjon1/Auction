@@ -9,6 +9,8 @@ import com.auction.app.service.ICategoryService;
 import com.auction.app.service.UserService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +28,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping("/auctions")
@@ -131,6 +136,37 @@ public class AuctionController {
 
        // return "CustomeError";
     }
+    @DeleteMapping("/{auctionId}")
+    public String auctionDelete(@PathVariable(value = "auctionId") UUID auctionId, Model model) throws IOException {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findUserByUsername(username);
+        if (user.getRoles().contains("admin")){
+            auctionService.deleteById(auctionId);
+        }
+        return "redirect:/auctions";
+    }
 
+    /*GetMapping@GetMapping("/listAuctions")
+    public String listBooks(
+            Model model,
+            @RequestParam("page") Optional<Integer> page,
+            @RequestParam("size") Optional<Integer> size) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(5);
 
+        Page<Auction> auctionPage = auctionService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
+
+        model.addAttribute("auctionPage", auctionPage);
+
+        int totalPages = auctionPage.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
+        return "listAuctions.html";
+    }*/
 }
+

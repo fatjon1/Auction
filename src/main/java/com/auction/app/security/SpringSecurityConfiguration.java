@@ -3,9 +3,12 @@ package com.auction.app.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.firewall.DefaultHttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 @Configuration
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter  {
@@ -14,6 +17,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter  {
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("../auction/**").permitAll()
                 .antMatchers("/auctions/**").permitAll()
 
                 .antMatchers("/required/**").permitAll()
@@ -34,6 +38,10 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter  {
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll()
                 .and().logout().permitAll();
         //.antMatchers("/getStudentRoles").hasAuthority("ROLE_WRITE");
+    }
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.httpFirewall(new DefaultHttpFirewall());
     }
 
     @Bean

@@ -7,14 +7,12 @@ import com.auction.app.repository.AuctionRepository;
 import com.auction.app.repository.UserRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.expression.Lists;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,7 +26,7 @@ public class AuctionService implements IAuctionService {
     public void createAuction(CreateAuctionDTO auctionDTO) {
         String username= SecurityContextHolder.getContext().getAuthentication().getName();
         User user=userRepository.findByUsername(username);
-        Auction auction = new Auction();
+        Auction auction = Auction.builder().build();
         auction.setTitle(auctionDTO.getTitle());
         auction.setStartPrice(auctionDTO.getStartingPrice());
         auction.setCreatedDate(LocalDateTime.now());
@@ -36,7 +34,7 @@ public class AuctionService implements IAuctionService {
         auction.setDescription(auctionDTO.getDescription());
         auction.setAuthorId(user.getId());
         auction.setCategoryId(auctionDTO.getCategory().getId());
-        auction.setImage("/images/" + auctionDTO.getImage());
+        auction.setImage("/images/" + "Book.png");
         auctionRepository.save(auction);
 
     }
@@ -62,5 +60,35 @@ public class AuctionService implements IAuctionService {
        return auctionRepository.findById(id).get();
     }
 
+    @Override
+    public void deleteById(UUID id) {
+        auctionRepository.deleteById(id);
+    }
+
+    @Override
+    public void save(Auction auction) {
+        auctionRepository.save(auction);
+    }
+
+    @Override
+    public Page<Auction> findPaginated(Pageable pageable) {
+        List<Auction> auctions = (List<Auction>) auctionRepository.findAll();
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+        List<Auction> list;
+
+        if (auctions.size() < startItem) {
+            list = Collections.emptyList();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, auctions.size());
+            list = auctions.subList(startItem, toIndex);
+        }
+
+        Page<Auction> auctionPage
+                = new PageImpl<Auction>(list, PageRequest.of(currentPage, pageSize), auctions.size());
+
+        return auctionPage;
+    }
 
 }
