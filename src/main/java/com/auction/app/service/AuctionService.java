@@ -32,10 +32,11 @@ public class AuctionService implements IAuctionService {
         auction.setTitle(auctionDTO.getTitle());
         auction.setStartPrice(auctionDTO.getStartingPrice());
         auction.setCreatedDate(LocalDateTime.now());
-        auction.setEndDate(auctionDTO.getEndDate());
+        auction.setEndDate(LocalDateTime.now().plusDays(1));
         auction.setDescription(auctionDTO.getDescription());
         auction.setAuthorId(user.getId());
         auction.setCategoryId(auctionDTO.getCategory().getId());
+        auction.setImage("/images/" + auctionDTO.getImage());
         auctionRepository.save(auction);
 
     }

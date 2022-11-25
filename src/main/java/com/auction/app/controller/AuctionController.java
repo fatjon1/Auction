@@ -15,15 +15,17 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+
+import javax.validation.Path;
 import javax.validation.Valid;
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -79,6 +81,9 @@ public class AuctionController {
             modelMap.addFlashAttribute("model", auctionDTO);
             return new RedirectView("/auctions/new");
         }
+        Auction auction;
+
+
         auctionService.createAuction(auctionDTO);
         modelMap.addFlashAttribute("message", auctionDTO.getTitle() == null ? "Course created successfully" : "Course updated successfully");
         return new RedirectView("/auctions");
@@ -126,5 +131,6 @@ public class AuctionController {
 
        // return "CustomeError";
     }
+
 
 }

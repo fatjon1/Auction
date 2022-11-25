@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -17,16 +19,18 @@ public class CreateAuctionDTO {
 	private String title;
 	
 	private double startingPrice;
-	
-	private LocalDateTime endDate;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME , pattern = ("dd/MM/yyyy HH:mm"))
+	private LocalDateTime endingDate;
 
 	private Category category;
 	
 	private String description;
 
+	private String image;
+
 
 	public boolean isDataValid() {
-		if(title.isEmpty() || description.isEmpty() || startingPrice<=0 || category!=null || endDate==null)
+		if(title.isEmpty() || description.isEmpty() || startingPrice<=0 || category!=null || endingDate==null)
 			return false;
 		
 		return true;

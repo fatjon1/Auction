@@ -1,14 +1,57 @@
+<!--
+<div th:fragment="menu">
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm">
+        <a class="navbar-brand" th:href="@{/}"><img width="150" height="30" src="/images/logo2.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarCollapse" aria-controls="navbarCollapse"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto font-weight-bold">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}"> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/auctions}"> Auctions </a>
+                </li>
+                &lt;!&ndash;<li class="nav-item">
+                    <a class="nav-link" th:href="@{/shopping-cart/cart}">Shopping Cart
+                        <span class="badge badge-primary badge-pill" style="vertical-align: top;" th:text="${shoppingCartItemNumber} > 0 ? ${shoppingCartItemNumber}"></span></a>
+                </li>&ndash;&gt;
+            </ul>
+            <ul class="navbar-nav ml-auto font-weight-bold">
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}">My Account </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/my-profile}">My Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}"> Log Out </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" sec:authorize="hasRole('ADMIN')" th:href="@{/article/article-list}"> ADMIN PORTAL</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+</div>
+-->
 <header th:fragment="menu" class="header-basic-light">
     <script th:src="@{/js/login.js}"></script>
     <link rel="stylesheet" th:href="@{/css/header.css}">
 
     <div class="header-limiter">
 
-        <h1><a href="/"><img th:src="@{/images/logo.png}"></a></h1>
+        <h1><a href="/"><img th:src="@{/images/logo2.png}"></a></h1>
 
         <nav>
             <a href="/">Home</a> |
             <a href="/auctions">Auctions</a> |
+            <a href="/auctions/new">New Auction</a> |
 
             <a sec:authorize ="!isAuthenticated()" href="/login">Login </a>
 

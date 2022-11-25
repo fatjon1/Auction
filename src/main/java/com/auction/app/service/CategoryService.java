@@ -1,5 +1,6 @@
 package com.auction.app.service;
 
+import antlr.StringUtils;
 import com.auction.app.model.Category;
 import com.auction.app.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,8 @@ public class CategoryService implements ICategoryService{
 
     @Override
     public void save(Category category) {
-
-        categoryRepository.save(category);
+       if (categoryRepository.findByTitle(category.getTitle())==null) {
+            categoryRepository.save(category);
+        }
     }
 }

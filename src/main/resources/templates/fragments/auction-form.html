@@ -3,14 +3,14 @@
     <form action="/auctions/save" class="form"  id="auction" name="auction" method="POST" enctype="multipart/form-data">
         <input type="text" name="title" placeholder="Titile" required/>
         <input type="number" name="startingPrice" placeholder="Starting Price" required/>
-        <input type="date" id="setDate" name="endingDate" placeholder="Project Deadline" required/>
+        <!--<input type="date" id="setDate" name="endingDate" placeholder="Project Deadline" required/>-->
         <select class="form-control" name="category" style="margin-bottom:10px;">
             <option th:each="category : ${categories}"
                     th:value="${category.id}"
                     th:utext="${category.title}"/>
         </select>
         <textarea name="description" rows="1" cols="1"  style="width:100%" placeholder="Description of the item" required></textarea>
-       <!-- Select Images <input type="file" id="file" name="multiPartFiles" multiple required>-->
+        Select Images <input type="file" id="file" name="multiPartFiles" multiple required>
         <input type="submit" id="create" value="Post Project" >
     </form>
 </div>

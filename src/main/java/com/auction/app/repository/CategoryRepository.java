@@ -7,4 +7,5 @@ import com.auction.app.model.Category;
 import java.util.UUID;
 
 public interface CategoryRepository extends CrudRepository<Category, UUID> {
+    Category findByTitle(String title);
 }
