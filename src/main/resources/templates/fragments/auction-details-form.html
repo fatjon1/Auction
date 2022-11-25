@@ -1,0 +1,131 @@
+<div class="w3aitssinglewthree" th:fragment="auction-details-form" style="background-color:white">
+    <div class="container">
+        <!-- 			+++++++++++++++++++++SHOWCASE++++++++++++++++ -->
+        <div class="products">
+            <div class="single-page">
+                <div class="single-page-row" id="detail-21">
+                    <div class="col-md-5 single-top-left">
+                        <div class="flexslider">
+                            <ul class="slides">
+                                <!-- 							<%   -->
+
+                                <!-- 								String file=""; -->
+                                <!-- 								int id=Integer.parseInt(request.getParameter("id")); -->
+                                <!-- 								PostProjectModel project=PostedProjectDAO.getPostProjectById(id); -->
+                                <!-- 								for(ImagesModel image:ImagesDAO.getAllImageByProjectId(id)){ -->
+                                <!-- 									file="FileServlet?path=E:/temp/"+image.getPath()+""; -->
+                                <!-- 							%> -->
+                                <!--<li th:data-thumb="@{'../auctionImage/' + ${img}}" th:each="img : ${images}">
+                                    <input type="hidden" id="pId" value="<%=id%>">
+                                    <div class="thumb-image detail_images"> <img th:src="@{'../auctionImage/' + ${img}}" data-imagezoom="true" class="img-responsive" alt="Groovy Apparel"></div>
+                                </li>-->
+                                <h1>Images</h1>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 single-top-right">
+                        <h1 class="item_name" style="color :#86bd4d;text-transform: capitalize; " th:text="${auction.title}"></h1>
+
+                        <b style="margin-left:5px;">Ends In :</b>
+                        <p id="demo" th:text="${endDate}" style="color:#191918; width:30%; background-color:#86bd4d; border-radius: 15px; padding:10px; text-align: center;" > </p>
+                        <!-- 						style="color:#89e54b; background-color:#191918; border-radius: 25px;" -->
+                        <p>This item will be delivered within 5-10 working days.</p>
+                        <div class="rating">
+
+                        </div>
+                        <div class="single-price">
+                            <ul>
+                                <li th:text="${auction.startPrice}" ><small>Starting Price</small></li>
+                                <input type="hidden" id="sPrice" th:text="${auction.startPrice}" >
+                                <!-- 								<li><a href="../#"><i class="fa fa-gift" aria-hidden="true"></i>Apply Coupon</a></li> -->
+                            </ul>
+
+                        </div>
+                        <h4 Style="float: left;text-decoration: underline;"><b>Product Discription : </b></h4>
+                        <p class="single-price-text" th:text="${auction.description}"></p>
+                        <div class="cbp-pgcontent aitssinglew3" id="mens_single">
+                            <!--<div th:if="${owner==false}">
+                                Enter Bid<input class="form-control" id="bidPrice" type="number"><br><br><br>
+                                <button class="btn btn-success agileits my-cart-btn" id="bidBtn" ><i class="fa fa-cart-plus" aria-hidden="true" ></i> Add Bid</button>
+                                <div class="clearfix"></div>
+                            </div>-->
+
+                            <!--<div th:if="${owner==true}" >
+                                Enter Bid<input class="form-control" id="bidPrice" type="number" disabled="disabled"><br><br><br>
+                                <button class="btn btn-success agileits my-cart-btn" id="bidBtn" disabled="disabled"><i class="fa fa-cart-plus" aria-hidden="true" ></i> Add Bid</button>
+                                <div class="clearfix"></div>
+                            </div>-->
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12" >
+                    <div style="width:15%; float:right;">
+                        Sort By :
+                        <select class="form-control" >
+
+                            <option>Bid Price</option>
+
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Bid Date</th>
+                            <th scope="col">Bid Amount</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody class="bids" >
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+
+            <!-- Custom-JavaScript-File-Links -->
+
+            <!-- Default-JavaScript --><script src="../js/jquery-2.2.3.js"></script>
+            <script src="../js/modernizr.custom.js"></script>
+            <script defer src="../js/jquery.flexslider.js"></script>
+            <script>
+				$(window).load(function() {
+					$('.flexslider').flexslider({
+						animation: "slide",
+						controlNav: "thumbnails"
+					});
+				});
+			</script>
+            <!-- //FlexSlider-JavaScript -->
+
+            <!-- ImageZoom-JavaScript --><script src="../js/imagezoom.js"></script>
+
+            <!-- //Custom-JavaScript-File-Links -->
+
+            <!-- Bootstrap-JavaScript --> <script src="../js/bootstrap.js"></script>
+            <script src="../required/notify.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+
+            <link rel="stylesheet" th:href="@{/css/font-awesome-animation.css}">
+
+        </div>
+    </div>
+</div>

@@ -51,7 +51,7 @@
         <nav>
             <a href="/">Home</a> |
             <a href="/auctions">Auctions</a> |
-            <a href="/auctions/new">New Auction</a> |
+            <a sec:authorize ="isAuthenticated()" href="/auctions/new">New Auction |</a>
 
             <a sec:authorize ="!isAuthenticated()" href="/login">Login </a>
 

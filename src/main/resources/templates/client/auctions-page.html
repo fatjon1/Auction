@@ -36,7 +36,7 @@
                         <div class="grid_meta">
                             <div class="product_price">
                                 <h4>
-                                    <a th:href="@{'/auction/' + ${auction.id}}" th:text="${auction.title}"></a>
+                                    <a th:href="@{'/auctions/' + ${auction.id}}" th:text="${auction.title}"></a>
                                 </h4>
                                 <div class="grid-price mt-2">
                                     <span class="money " th:text="${auction.startPrice}"></span>
@@ -117,7 +117,7 @@
                         <div class="grid_meta">
                             <div class="product_price">
                                 <h4>
-                                    <a th:href="@{'/auction/' + ${auction.id}}" th:text="${auction.title}"></a>
+                                    <a th:href="@{'/auctions/' + ${auction.id}}" th:text="${auction.title}"></a>
                                 </h4>
                                 <div class="grid-price mt-2">
                                     <span class="money " th:text="${auction.startPrice}"></span>

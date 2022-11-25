@@ -124,7 +124,7 @@ public class AuctionController {
             model.addAttribute("endDate", formatDateTime);
             model.addAttribute("owner",user.getId()==auction.getAuthorId());
             model.addAttribute("bidPlaced", bidRepository.findByAuction(auction).size());
-            return "AuctionView";
+            return "client/auction-details";
 
        // }
 
