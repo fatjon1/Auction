@@ -11,7 +11,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- Default-JavaScript --><script th:src="@{../js/jquery-2.2.3.js}"></script>
 
 	<!-- Index-Page-CSS -->	<link rel="stylesheet" th:href="@{../css/styleView.css}"		 type="text/css" media="all">
-	<!-- FlexSlider-CSS -->	<link rel="stylesheet" href="../css/flexslider.css" type="text/css" media="all">
+	<!-- FlexSlider-CSS -->	<link rel="stylesheet" href="/css/flexslider.css" type="text/css" media="all">
 	<!-- //Custom-Stylesheet-Links -->
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -20,8 +20,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<link rel="shortcut icon" href="../images/fav.ico" type="image/png">
 	<!-- Font-Awesome-File-Links -->
-	<!-- CSS --> <link rel="stylesheet" href="../css/font-awesome.css" 		 type="text/css" media="all">
-	<!-- TTF --> <link rel="stylesheet" href="../fonts/fontawesome-webfont.ttf" type="text/css" media="all">
+	<!-- CSS --> <link rel="stylesheet" href="/css/font-awesome.css" 		 type="text/css" media="all">
+	<!-- TTF --> <link rel="stylesheet" href="/fonts/fontawesome-webfont.ttf" type="text/css" media="all">
 	<!-- //Font-Awesome-File-Links -->
 
 
@@ -32,6 +32,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 var dates=/*[[${endDate}]]*/ 'default';
+console.info("Product date", dates);
 
 var countDownDate = new Date(dates).getTime();
 
@@ -95,28 +96,30 @@ var x = setInterval(function() {
 		<!-- 			+++++++++++++++++++++SHOWCASE++++++++++++++++ -->
 		<div class="products">
 			<div class="single-page">
-				<div class="single-page-row" id="detail-21">
-					<div class="col-md-5 single-top-left">
+				<div class="row container-fluid" id="detail-21">
+					<!--<div class="col-md-5 single-top-left">
 						<div class="flexslider">
 							<ul class="slides">
-								<!-- 							<%   -->
+								&lt;!&ndash; 							<%   &ndash;&gt;
 
-								<!-- 								String file=""; -->
-								<!-- 								int id=Integer.parseInt(request.getParameter("id")); -->
-								<!-- 								PostProjectModel project=PostedProjectDAO.getPostProjectById(id); -->
-								<!-- 								for(ImagesModel image:ImagesDAO.getAllImageByProjectId(id)){ -->
-								<!-- 									file="FileServlet?path=E:/temp/"+image.getPath()+""; -->
-								<!-- 							%> -->
+								&lt;!&ndash; 								String file=""; &ndash;&gt;
+								&lt;!&ndash; 								int id=Integer.parseInt(request.getParameter("id")); &ndash;&gt;
+								&lt;!&ndash; 								PostProjectModel project=PostedProjectDAO.getPostProjectById(id); &ndash;&gt;
+								&lt;!&ndash; 								for(ImagesModel image:ImagesDAO.getAllImageByProjectId(id)){ &ndash;&gt;
+								&lt;!&ndash; 									file="FileServlet?path=E:/temp/"+image.getPath()+""; &ndash;&gt;
+								&lt;!&ndash; 							%> &ndash;&gt;
 
 
 
 							</ul>
 						</div>
-					</div>
-					<div class="col-md-6 single-top-right">
+					</div>-->
+					<div class="col-md-6">
 						<div class="thumb-image detail_images float-left">
-							<img th:src="@{'/images/' + ${auction.image}}" data-imagezoom="true" class="img-responsive" alt="Groovy Apparel"></div>
-
+							<img th:src="@{'/images/' + ${auction.image}}" data-imagezoom="true" class="img-responsive" alt="Groovy Apparel">
+						</div>
+					</div>
+					<div class="col-md-6 ">
 						<h1 class="item_name" style="color :#86bd4d;text-transform: capitalize; " th:text="${auction.title}"></h1>
 
 						<b style="margin-left:5px;">Ends In :</b>
@@ -137,17 +140,21 @@ var x = setInterval(function() {
 						<h4 Style="float: left;text-decoration: underline;"><b>Product Discription : </b></h4>
 						<p class="single-price-text" th:text="${auction.description}"></p>
 						<div class="cbp-pgcontent aitssinglew3" id="mens_single">
-							<!--<div th:if="${owner==false}">
+							<div th:if="${owner==false}">
 								Enter Bid<input class="form-control" id="bidPrice" type="number"><br><br><br>
 								<button class="btn btn-success agileits my-cart-btn" id="bidBtn" ><i class="fa fa-cart-plus" aria-hidden="true" ></i> Add Bid</button>
 								<div class="clearfix"></div>
-							</div>-->
+							</div>
 
-							<!--<div th:if="${owner==true}" >
-								Enter Bid<input class="form-control" id="bidPrice" type="number" disabled="disabled"><br><br><br>
-								<button class="btn btn-success agileits my-cart-btn" id="bidBtn" disabled="disabled"><i class="fa fa-cart-plus" aria-hidden="true" ></i> Add Bid</button>
-								<div class="clearfix"></div>
-							</div>-->
+							<div th:if="${owner==true}" >
+								<form action="" method="post" th:object="bid">
+									<input type="hidden" name="auctionId" th:value="${auction.id}">
+									Enter Bid<input class="form-control" id="bidPrice" type="number" disabled="disabled"><br><br><br>
+									<button  type="submit" class="btn btn-success agileits my-cart-btn" id="bidBtn" disabled="disabled"><i class="fa fa-cart-plus" aria-hidden="true" ></i> Add Bid</button>
+									<div class="clearfix"></div>
+								</form>
+
+							</div>
 
 
 						</div>
@@ -210,16 +217,16 @@ var x = setInterval(function() {
 			</script>
 <!-- //FlexSlider-JavaScript -->
 
-<!-- ImageZoom-JavaScript --><script src="../js/imagezoom.js"></script>
+<!-- ImageZoom-JavaScript --><script src="/js/imagezoom.js"></script>
 
 <!-- //Custom-JavaScript-File-Links -->
 
-<!-- Bootstrap-JavaScript --> <script src="../js/bootstrap.js"></script>
-<script src="../required/notify.min.js"></script>
+<!-- Bootstrap-JavaScript --> <script src="/js/bootstrap.js"></script>
+<script src="/required/notify.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 
-<link rel="stylesheet" href="../css/font-awesome-animation.css">
+<link rel="stylesheet" href="/css/font-awesome-animation.css">
 
 
 </body>
