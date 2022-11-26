@@ -1,7 +1,9 @@
 package com.auction.app.controller;
 
+import com.auction.app.dto.BidWrite;
 import com.auction.app.dto.CreateAuctionDTO;
 import com.auction.app.model.Auction;
+import com.auction.app.model.Bid;
 import com.auction.app.model.User;
 import com.auction.app.repository.BidRepository;
 import com.auction.app.service.IAuctionService;
@@ -27,6 +29,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
@@ -101,6 +104,7 @@ public class AuctionController {
 
 
         Auction auction=auctionService.getById(auctionId);
+        BidWrite bid = new BidWrite();
 
         /*if(auction!=null) {
 
@@ -129,6 +133,7 @@ public class AuctionController {
             model.addAttribute("endDate", formatDateTime);
             model.addAttribute("owner",user.getId()==auction.getAuthorId());
             model.addAttribute("bidPlaced", bidRepository.findByAuction(auction).size());
+            model.addAttribute("bid", bid);
             return "AuctionView";
 
        // }
@@ -167,6 +172,41 @@ public class AuctionController {
         }
 
         return "listAuctions.html";
+    }
+
+    @PostMapping("/add-bid")
+    public String postBid(@ModelAttribute BidWrite bidWrite, Model model) {
+        System.out.println(model);
+        String username=SecurityContextHolder.getContext().getAuthentication().getName();
+        User whoAmI = userService.findUserByUsername(username);
+        Auction auction=auctionService.getById(bidWrite.getAuctionId());
+
+        if(auction!=null && whoAmI.getId() != auction.getAuthor().getId()) {
+            Bid bid=new Bid();
+            bid.setAuctionId(auction.getId());
+            bid.setBidOn(LocalDateTime.now());
+            bid.setPrice(bidWrite.getPrice());
+            bid.setCustomerId(whoAmI.getId());
+
+            bidRepository.save(bid);
+            return "redirect:/auctions";
+        }
+        return "error,Given parameter are not valid";
+    }
+
+    @PostMapping("/deleteBid/{bidId}")
+    public String deleteBid(@PathVariable(value = "bidId") UUID bidId) {
+        String username=SecurityContextHolder.getContext().getAuthentication().getName();
+        User whoAmI=userService.findUserByUsername(username);
+
+        Bid bid= bidRepository.findById(bidId).get();
+
+        if(bid.getCustomer().getId() == whoAmI.getId()) {
+            bidRepository.delete(bid);
+            return "Bid Deleted";
+        }
+
+        return "Given Parameter are not valid";
     }
 }
 

@@ -3,6 +3,7 @@ package com.auction.app.model;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -44,5 +45,8 @@ public class Bid extends BaseEntity {
 	
 	@Column(name="price")
 	private double price;
+
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME , pattern = ("dd/MM/yyyy HH:mm"))
+	private LocalDateTime bidOn;
 
 }
