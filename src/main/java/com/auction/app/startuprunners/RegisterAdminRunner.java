@@ -35,6 +35,12 @@ public class RegisterAdminRunner implements CommandLineRunner {
                 .build();
         String result = userService.register(admin, "admin");
         log.info(String.format("Admin creation result: %s", result));
+        UserWrite user = UserWrite.builder()
+                .username("user")
+                .password("user")
+                .repeatedPassword("user")
+                .build();
+        userService.register(user,"user");
 
         Category category = Category.builder()
                 .title("Electronics")

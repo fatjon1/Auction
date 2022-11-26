@@ -146,7 +146,7 @@ public class AuctionController {
         return "redirect:/auctions";
     }
 
-    /*GetMapping@GetMapping("/listAuctions")
+    @GetMapping("/listAuctions")
     public String listBooks(
             Model model,
             @RequestParam("page") Optional<Integer> page,
@@ -167,6 +167,6 @@ public class AuctionController {
         }
 
         return "listAuctions.html";
-    }*/
+    }
 }
 

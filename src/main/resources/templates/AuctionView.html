@@ -107,17 +107,16 @@ var x = setInterval(function() {
 								<!-- 								for(ImagesModel image:ImagesDAO.getAllImageByProjectId(id)){ -->
 								<!-- 									file="FileServlet?path=E:/temp/"+image.getPath()+""; -->
 								<!-- 							%> -->
-								<!--<li th:data-thumb="@{'../auctionImage/' + ${img}}" th:each="img : ${images}">
-									<input type="hidden" id="pId" value="<%=id%>">
-									<div class="thumb-image detail_images"> <img th:src="@{'../auctionImage/' + ${img}}" data-imagezoom="true" class="img-responsive" alt="Groovy Apparel"></div>
-								</li>-->
-								<h1>Images</h1>
+
 
 
 							</ul>
 						</div>
 					</div>
 					<div class="col-md-6 single-top-right">
+						<div class="thumb-image detail_images float-left">
+							<img th:src="@{'/images/' + ${auction.image}}" data-imagezoom="true" class="img-responsive" alt="Groovy Apparel"></div>
+
 						<h1 class="item_name" style="color :#86bd4d;text-transform: capitalize; " th:text="${auction.title}"></h1>
 
 						<b style="margin-left:5px;">Ends In :</b>

@@ -27,9 +27,33 @@
 </table>
 <div th:if="${auctionPage.totalPages > 0}" class="pagination"
      th:each="pageNumber : ${pageNumbers}">
-  <a th:href="@{/listAuctions(size=${bookPage.size}, page=${pageNumber})}"
+  <a th:href="@{/listAuctions(size=${auctionPage.size}, page=${pageNumber})}"
      th:text=${pageNumber}
      th:class="${pageNumber==auctionPage.number + 1} ? active"></a>
+</div>
+
+<div th:if="${persons.totalPages != 1}" class="form-group col-md-11 pagination-container">
+  <ul class="pagination">
+    <li th:class="${persons.number == 0} ? disabled">
+      <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
+    </li>
+    <li th:class="${persons.number == 0} ? disabled">
+      <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${persons.number})}">&larr;</a>
+    </li>
+    <li th:class="${persons.number == (page - 1)} ? 'active pointer-disabled'"
+        th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+      <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${page})}"
+         th:text="${page}"></a>
+    </li>
+    <li th:class="${persons.number + 1 == persons.totalPages} ? disabled">
+      <a class="pageLink"
+         th:href="@{/(pageSize=${selectedPageSize}, page=${persons.number + 2})}">&rarr;</a>
+    </li>
+    <li th:class="${persons.number + 1 == persons.totalPages} ? disabled">
+      <a class="pageLink"
+         th:href="@{/(pageSize=${selectedPageSize}, page=${persons.totalPages})}">&raquo;</a>
+    </li>
+  </ul>
 </div>
 </body>
 
