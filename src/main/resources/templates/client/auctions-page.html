@@ -9,7 +9,7 @@
 
 
 
-<div class="container">
+<!--div class="container">
 <h2>Auctions list</h2>
 <div class="row" th:fragment="latest-auctions">
     <div class="col-12" th:if="${latestAuctions == null || latestAuctions.size() < 1}">
@@ -22,7 +22,7 @@
             <div class="men-pro-item">
                 <div class="men-thumb-item">
                     <img th:attr="src=@{|/images/${auction.image}|}"/>
-                    <!-- 									<img th:src="@{/image/Book.png}" class="img-thumbnail" alt=""> -->
+                    &lt;!&ndash; 									<img th:src="@{/image/Book.png}" class="img-thumbnail" alt=""> &ndash;&gt;
 
                     <div class="men-cart-pro">
                         <div class="inner-men-cart-pro">
@@ -91,10 +91,10 @@
     </div>
 </div>
 </div>
-
+-->
 
 <div class="container">
-    <h2>Auctions list</h2>
+   <!-- <h2>Auctions list</h2>-->
     <div class="row" th:fragment="all-auctions">
 
     <div  class="col-md-3 product-men women_two" th:each="auction : ${auctions}">
@@ -121,7 +121,7 @@
                                 <div class="grid-price mt-2">
                                     <span class="money " th:text="${auction.startPrice}"></span>
                                 </div>
-                                <form th:action="@{/auctions/{id}(id=*{auction.id})}" th:method="delete">
+                                <form sec:authorize="hasAuthority('admin')"th:action="@{/auctions/{id}(id=*{auction.id})}" th:method="delete">
                                     <input class="btn btn-default btn-xs" type="submit" value="delete" />
                                 </form>
 
